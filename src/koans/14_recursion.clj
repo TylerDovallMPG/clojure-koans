@@ -1,23 +1,32 @@
 (ns koans.14-recursion
   (:require [koan-engine.core :refer :all]))
 
+
 (defn is-even? [n]
   (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+    true
+    (not (is-even? (dec n))))
+  )
 
 (defn is-even-bigint? [n]
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  __)
+  (loop [index (dec (count coll))
+         result []]
+    (if (< index 0)
+      result
+      (recur (dec index) (conj result (get coll index))))))
 
 (defn factorial [n]
-  __)
+  (loop [cnt n
+         acc 1]
+    (if (< cnt 2) acc
+      (recur (dec cnt) (* cnt acc)))))
 
 (meditations
   "Recursion ends with a base case"
